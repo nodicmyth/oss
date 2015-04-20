@@ -6,31 +6,40 @@ import java.io.Serializable;
  * Created by huangshiqian on 15/4/20.
  */
 public class Column implements Serializable {
-    private String columnName;
-    private ColumnType columnType;
-    private String dataType;
+    private String column_name;
+    private ColumnType column_type;
+    private String column_data_type;
 
-    public String getColumnName() {
-        return columnName;
+    public String getColumn_data_type() {
+        return column_data_type;
     }
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
+    public void setColumn_data_type(String column_data_type) {
+        this.column_data_type = column_data_type;
     }
 
-    public ColumnType getColumnType() {
-        return columnType;
+    public String getColumn_name() {
+        return column_name;
     }
 
-    public void setColumnType(ColumnType columnType) {
-        this.columnType = columnType;
+    public void setColumn_name(String column_name) {
+        this.column_name = column_name;
     }
 
-    public String getDataType() {
-        return dataType;
+    public ColumnType getColumn_type() {
+        return column_type;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setColumn_type(ColumnType column_type) {
+        this.column_type = column_type;
+    }
+
+    @Override
+    public String toString() {
+        return "Column{" +
+                "column_data_type='" + column_data_type + '\'' +
+                ", column_name='" + column_name + '\'' +
+                ", column_type=" + column_type +
+                '}';
     }
 }

@@ -24,6 +24,7 @@
         <module>oss-meta-api</module>
         <module>oss-meta-core</module>
         <module>oss-meta-service</module>
+        <module>oss-meta-consumer</module>
     </modules>
 
 </project>

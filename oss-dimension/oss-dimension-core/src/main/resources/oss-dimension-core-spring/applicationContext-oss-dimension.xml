@@ -51,4 +51,5 @@
 	<import resource="classpath:oss-dimension-core-spring/applicationContext-oss-dimension-component.xml" />
 	<import resource="classpath:oss-dimension-core-spring/applicationContext-oss-dimension-facade.xml" />
     <import resource="classpath:oss-dimension-core-spring/applicationContext-oss-dimension-provider.xml" />
+    <!--<import resource="classpath:oss-dimension-core-spring/applicationContext-oss-meta-consumer.xml" />-->
 </beans>

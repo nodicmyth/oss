@@ -27,6 +27,11 @@
         </dependency>
         <dependency>
             <groupId>com.data.dw</groupId>
+            <artifactId>oss-meta-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.data.dw</groupId>
             <artifactId>oss-redis</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

@@ -27,4 +27,8 @@
         <module>oss-dimension-consumer</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+        </dependencies>
+    </dependencyManagement>
 </project>

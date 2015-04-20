@@ -24,4 +24,8 @@
 	<bean id="dimensionDAO" class="com.data.dw.oss.dimension.dao.impl.DimensionDAOImpl"></bean>
 	
 	<bean id="dimensionCacheDAO" class="com.data.dw.oss.dimension.dao.impl.DimensionDAORedisImpl"></bean>
+
+    <!--<bean id="dimensionModelDAO" class="com.data.dw.oss.meta.dao.impl.DimensionModelDAOImpl"></bean>-->
+
+    <!--<bean id="dimensionModelCacheDAO" class="com.data.dw.oss.meta.dao.impl.DimensionModelDAORedisImpl"></bean>-->
 </beans>

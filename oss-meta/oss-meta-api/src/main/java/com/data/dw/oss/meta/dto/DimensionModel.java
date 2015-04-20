@@ -7,15 +7,7 @@ import java.io.Serializable;
  */
 public class DimensionModel implements Serializable {
     private String dimensionName;
-    private Column dimKey;
 
-    public Column getDimKey() {
-        return dimKey;
-    }
-
-    public void setDimKey(Column dimKey) {
-        this.dimKey = dimKey;
-    }
 
     public String getDimensionName() {
         return dimensionName;
@@ -23,5 +15,12 @@ public class DimensionModel implements Serializable {
 
     public void setDimensionName(String dimensionName) {
         this.dimensionName = dimensionName;
+    }
+
+    @Override
+    public String toString() {
+        return "DimensionModel{" +
+                "dimensionName='" + dimensionName + '\'' +
+                '}';
     }
 }

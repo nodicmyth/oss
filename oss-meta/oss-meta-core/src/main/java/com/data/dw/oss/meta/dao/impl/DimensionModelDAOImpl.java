@@ -16,7 +16,7 @@ public class DimensionModelDAOImpl extends BaseDAO implements DimensionModelDAO 
         Column column = (Column) queryOne("com.data.dw.oss.meta.sqlmap.findDimensionKeyColumn", dimension);
 
         if(column != null) {
-            column.setColumnType(ColumnType.DIM_KEY);
+            column.setColumn_type(ColumnType.DIM_KEY);
         }
 
         return column;

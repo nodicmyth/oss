@@ -17,5 +17,7 @@
 		
  	<dubbo:service ref="lateArriveDimensionLookUpFacade" group="${service-group}" version="${serrvice-version}" timeout="${service-timeout}"
  		interface="com.data.dw.oss.dimension.facade.LateArriveDimensionLookUpFacade" />
- 	
+
+    <dubbo:reference id="dimensionModelFacade" group="${meta-service-group}" version="${meta-serrvice-version}" retries="0" timeout="${meta-service-timeout}"
+                     interface="com.data.dw.oss.meta.facade.DimensionModelFacade" />
 </beans>

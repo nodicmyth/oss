@@ -10,5 +10,7 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <bean id="dimensionLookUpService" class="com.data.dw.oss.dimension.service.impl.DimensionLookUpServiceImpl"></bean>
-    
+
+    <!--<bean id="dimensionModelService" class="com.data.dw.oss.meta.service.impl.DimensionModelServiceImpl"></bean>-->
+
 </beans>
