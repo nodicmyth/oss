@@ -1,4 +1,4 @@
-package com.data.dw.meta.model;
+package com.data.dw.oss.meta.dto;
 
 /**
  * Created by huangshiqian on 15/4/20.

@@ -1,4 +1,4 @@
-package com.data.dw.meta.model;
+package com.data.dw.oss.meta.dto;
 
 import java.io.Serializable;
 
