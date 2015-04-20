@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration>
+	<appender name="oss_dimension"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<File>${catalina.base}/logs/oss.log</File>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{0} -
+				%msg%n</pattern>
+            <charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>logs/oss_dimension.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="oss_dimension_error"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${catalina.base}/logs/oss_dimension_error.log</File>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{0} - %msg%n
+			</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>logs/oss_dimension_error.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+		</rollingPolicy>
+	</appender>
+
+	<logger name="org.apache.axis.ConfigurationException" level="info" />
+
+	<logger name="java.sql" level="DEBUG" />
+    <logger name="org.data.dw" level="DEBUG" />
+	<logger name="org.apache.ibatis" level="DEBUG" />
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="net.rubyeye.xmemcached" level="ERROR" />
+	<logger name="com.google.code.yanf4j" level="ERROR" />
+	<logger name="org.apache.zookeeper" level="ERROR" />
+	<logger name="org.springframework.scheduling.quartz" level="ERROR" />
+	<logger name="com.alibaba.dubbo.remoting.exchange.support.header"
+		level="ERROR" />
+	<logger name="com.qunar.pay.g2.utils" level="WARN" />
+
+	<root level="DEBUG">
+		<appender-ref ref="oss_dimension" />
+		<appender-ref ref="oss_dimension_error" />
+	</root>
+
+</configuration>

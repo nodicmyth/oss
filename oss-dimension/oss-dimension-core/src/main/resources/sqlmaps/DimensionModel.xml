@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.dw.oss.sqlmap">
+	<!--<select id="userinfo" resultType="com.qunar.pay.g2.api.credit.dto.UserBaseDTO"-->
+		<!--parameterType="com.qunar.pay.g2.api.credit.dto.UserRequestDTO">-->
+		<!--SELECT t.uid, t.phone, t.`name`, t.id_no, t.val, true AS isWhiteList-->
+		<!--FROM st_user_credit_pay t-->
+		<!--WHERE t.uid = '${uid}'-->
+    <!--</select>-->
+
+    <select id="queryDimension"
+            resultType="Long"
+            parameterType="com.data.dw.oss.dimension.api.dto.DimensionRequestDTO"
+            statementType="PREPARED">
+        select ${dimKey.name}
+        from ${dimensionName} t
+        where
+        <foreach collection="columns" item="column" index="index" separator="and">
+            <if test="null != column.value">
+                ${column.name} = #{column.value}
+            </if>
+        </foreach>
+    </select>
+
+    <insert id="createDimensionAutoKey" parameterType="com.data.dw.oss.dimension.api.dto.DimensionRequestDTO" keyProperty="dimKey.value">
+        <selectKey keyProperty="dimKey.value" resultType="Long" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        INSERT IGNORE INTO ${dimensionName}
+        (
+        <foreach collection="columns" item="column" index="index" separator=",">
+            <if test="null != column.value">
+                ${column.name}
+            </if>
+        </foreach>
+        )
+        values (
+        <foreach collection="columns" item="column" index="index" separator=",">
+            <if test="null != column.value">
+                #{column.value}
+            </if>
+        </foreach>
+        )
+    </insert>
+</mapper>
