@@ -6,6 +6,6 @@ import com.data.dw.oss.meta.dto.DimensionModel;
 /**
  * Created by huangshiqian on 15/4/20.
  */
-public abstract class DimensionModelFacade {
+public interface DimensionModelFacade {
     public abstract Column getDimKey(DimensionModel dimensionModel);
 }
