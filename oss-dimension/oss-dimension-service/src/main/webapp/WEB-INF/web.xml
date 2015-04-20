@@ -7,7 +7,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath*:/oss-core-spring/applicationContext-oss.xml
+            classpath*:/oss-dimension-core-spring/applicationContext-oss-dimension.xml
         </param-value>
     </context-param>
 
