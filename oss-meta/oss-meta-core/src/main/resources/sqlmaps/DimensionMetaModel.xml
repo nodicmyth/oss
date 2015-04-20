@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.dw.oss.meta.sqlmap">
+
+    <!-- 查询维度的代理键列信息 -->
+    <select id="findDimensionKeyColumn"
+            resultType="com.data.dw.oss.meta.dto.Column"
+            parameterType="com.data.dw.oss.meta.dto.DimensionModel"
+            statementType="PREPARED">
+        select t.column_name, t.column_data_type
+        from column_meta t
+        where t.column_type = 'DIM_KEY'
+        AND t.table_name = '${dimensionName}'
+    </select>
+</mapper>

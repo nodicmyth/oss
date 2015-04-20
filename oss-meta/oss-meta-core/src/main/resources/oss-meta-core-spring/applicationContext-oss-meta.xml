@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+	<context:annotation-config />
+    <context:property-placeholder location="classpath:oss_meta.properties" ignore-unresolvable="true"/>
+	<context:component-scan base-package="com.data.dw.oss.meta" />
+
+	<aop:aspectj-autoproxy />
+	<tx:annotation-driven transaction-manager="txManager" />
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath:db.properties</value>
+                <value>classpath:dubbo.properties</value>
+            </list>
+        </property>
+    </bean>
+
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="txTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="txManager" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource" />
+
+
+
+	<import resource="classpath:oss-meta-core-spring/applicationContext-oss-meta-datasource.xml" />
+	<import resource="classpath:oss-meta-core-spring/applicationContext-oss-meta-dao.xml" />
+	<import resource="classpath:oss-meta-core-spring/applicationContext-oss-meta-service.xml" />
+	<import resource="classpath:oss-meta-core-spring/applicationContext-oss-meta-component.xml" />
+	<import resource="classpath:oss-meta-core-spring/applicationContext-oss-meta-facade.xml" />
+    <import resource="classpath:oss-meta-core-spring/applicationContext-oss-meta-provider.xml" />
+</beans>
