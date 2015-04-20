@@ -21,7 +21,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
-	<bean id="dimensionDAO" class="com.data.dw.oss.dimension.core.dao.impl.DimensionDAOImpl"></bean>
+	<bean id="dimensionDAO" class="com.data.dw.oss.dimension.dao.impl.DimensionDAOImpl"></bean>
 	
-	<bean id="dimensionCacheDAO" class="com.data.dw.oss.dimension.core.dao.impl.DimensionDAORedisImpl"></bean>
+	<bean id="dimensionCacheDAO" class="com.data.dw.oss.dimension.dao.impl.DimensionDAORedisImpl"></bean>
 </beans>

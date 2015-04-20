@@ -16,6 +16,6 @@
     <dubbo:protocol name="dubbo" port="${provider-port}" />
 		
  	<dubbo:service ref="lateArriveDimensionLookUpFacade" group="${service-group}" version="${serrvice-version}" timeout="${service-timeout}"
- 		interface="com.data.dw.oss.dimension.api.facade.LateArriveDimensionLookUpFacade" />
+ 		interface="com.data.dw.oss.dimension.facade.LateArriveDimensionLookUpFacade" />
  	
 </beans>

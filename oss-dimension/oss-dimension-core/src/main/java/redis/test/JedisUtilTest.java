@@ -3,8 +3,8 @@
  */
 package redis.test;
 
-import com.data.dw.oss.dimension.api.dto.Column;
-import com.data.dw.oss.dimension.api.dto.DimensionRequestDTO;
+import com.data.dw.oss.dimension.dto.Column;
+import com.data.dw.oss.dimension.dto.DimensionRequestDTO;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;

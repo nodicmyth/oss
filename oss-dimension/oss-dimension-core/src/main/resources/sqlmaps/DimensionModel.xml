@@ -10,7 +10,7 @@
 
     <select id="queryDimension"
             resultType="Long"
-            parameterType="com.data.dw.oss.dimension.api.dto.DimensionRequestDTO"
+            parameterType="com.data.dw.oss.dimension.dto.DimensionRequestDTO"
             statementType="PREPARED">
         select ${dimKey.name}
         from ${dimensionName} t
@@ -22,7 +22,7 @@
         </foreach>
     </select>
 
-    <insert id="createDimensionAutoKey" parameterType="com.data.dw.oss.dimension.api.dto.DimensionRequestDTO" keyProperty="dimKey.value">
+    <insert id="createDimensionAutoKey" parameterType="com.data.dw.oss.dimension.dto.DimensionRequestDTO" keyProperty="dimKey.value">
         <selectKey keyProperty="dimKey.value" resultType="Long" order="AFTER">
             select LAST_INSERT_ID()
         </selectKey>

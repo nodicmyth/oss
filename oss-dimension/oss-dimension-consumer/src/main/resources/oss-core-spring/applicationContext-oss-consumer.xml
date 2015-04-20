@@ -30,5 +30,5 @@
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService-->
     <dubbo:reference id="lateArriveDimensionLookUpFacade" group="${service-group}" version="${serrvice-version}" retries="0" timeout="${service-timeout}"
-                     interface="com.data.dw.oss.dimension.api.facade.LateArriveDimensionLookUpFacade" />
+                     interface="com.data.dw.oss.dimension.facade.LateArriveDimensionLookUpFacade" />
 </beans>

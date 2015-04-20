@@ -11,6 +11,6 @@
 
 
 	<bean id="lateArriveDimensionLookUpFacade"
-		class="com.data.dw.oss.dimension.core.facade.impl.LateArriveDimensionLookUpFacadeImpl">
+		class="com.data.dw.oss.dimension.facade.impl.LateArriveDimensionLookUpFacadeImpl">
 	</bean>
 </beans>

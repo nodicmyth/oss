@@ -61,7 +61,7 @@
 
     <bean name="jedis" factory-bean="redisClientBuilder" factory-method="getResource" destroy-method="close" />
 
-    <bean name="redisClient" class="com.data.dw.oss.dimension.consumer.test.redis.client.RedisClient">
+    <bean name="redisClient" class="com.data.dw.oss.redis.client.RedisClient">
         <property name="redisClientBuilder" ref="redisClientBuilder"/>
         <property name="storeKey">
             <value>${redis.store.dimInfo}</value>
