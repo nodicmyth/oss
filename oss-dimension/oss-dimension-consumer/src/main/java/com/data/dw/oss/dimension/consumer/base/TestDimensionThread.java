@@ -1,4 +1,4 @@
-package com.data.dw.oss.dimension.consumer.test;
+package com.data.dw.oss.dimension.consumer.base;
 
 import com.data.dw.oss.dimension.dto.Column;
 import com.data.dw.oss.dimension.dto.DimensionRequestDTO;
