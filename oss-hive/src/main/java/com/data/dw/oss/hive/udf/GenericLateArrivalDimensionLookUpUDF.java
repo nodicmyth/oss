@@ -28,22 +28,35 @@ import java.util.Set;
 
 @Description(
         name = "dim_lookUp",
-        value = "_FUNC_(dim_name, key0, value0, key1, value1...) - Creates a map with the given [dimension_name, key/value pairs] "
+        value = "_FUNC_(dim_name, key0, value0, key1, value1...) - create dimension key/value pairs by dimension model "
 )
 public class GenericLateArrivalDimensionLookUpUDF extends GenericUDF {
     HashMap<Object, Object> ret = new HashMap();
     private ObjectInspector[] ois;
     private LateArriveDimensionLookUpFacade lateArriveDimensionLookUpFacade;
 
+    /**
+     * 初始化HIVE程序
+     * @param arguments 参数的处理拦截器
+     * @return 返回值处理拦截器
+     * @throws UDFArgumentException
+     */
     public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException {
-        if(arguments.length % 2 != 1) {
+        // 判断输入元素是否是符合 由模型名称 和 业务键的键值对组成的格式 参数个数大于3并且只会是奇数个
+        if(arguments.length % 2 != 1 || arguments.length < 3) {
             throw new UDFArgumentLengthException("Arguments must be in [dimension_name, column_key/column_value pairs]");
         } else {
+
+            // 保存各个传入参数的对象处理拦截器
             ois = arguments;
+
+            // 参数中第一个元素是模型名称,因此只能是String类型
             if(!(arguments[0] instanceof StringObjectInspector)) {
                 throw new UDFArgumentTypeException(1, "Dimension Name is expected String Type but " + arguments[0].getTypeName() + "\" is found");
             }
 
+            // 参数中下标为奇数的是模型中业务键的名称,对应列名,需要String类型
+            // 参数中下标为偶数的是模型中业务键的值,对应表中的数据,需要Primitive基础类型
             for(int keyOI = 1; keyOI < arguments.length; ++keyOI) {
                 if(keyOI % 2 == 1) {
                     if(!(arguments[keyOI] instanceof StringObjectInspector)) {
@@ -54,6 +67,7 @@ public class GenericLateArrivalDimensionLookUpUDF extends GenericUDF {
                 }
             }
 
+            // 规定HIVE的返回的key 和 value的格式, 代理键名称为String类型,代理键的值是Long类型
             ObjectInspector keyOI = PrimitiveObjectInspectorFactory.getPrimitiveJavaObjectInspector(PrimitiveCategory.STRING);
             ObjectInspector valueOI = PrimitiveObjectInspectorFactory.getPrimitiveJavaObjectInspector(PrimitiveCategory.LONG);
 
@@ -65,6 +79,12 @@ public class GenericLateArrivalDimensionLookUpUDF extends GenericUDF {
         }
     }
 
+    /**
+     * 执行数据
+     * @param arguments 处理的数据
+     * @return
+     * @throws HiveException
+     */
     public Object evaluate(DeferredObject[] arguments) throws HiveException {
         this.ret.clear();
 
