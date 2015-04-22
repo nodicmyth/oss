@@ -9,8 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-
-
     <groupId>com.data.dw</groupId>
     <artifactId>oss-hive-udf</artifactId>
     <packaging>jar</packaging>
