@@ -1,11 +1,12 @@
 package com.data.dw.oss.dimension.dto;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Created by huangshiqian on 15/4/9.
  */
-public class Column implements Serializable {
+public class Column implements Serializable, Comparable<Column> {
     private String name;
     private Object value;
 
@@ -61,5 +62,10 @@ public class Column implements Serializable {
                 "name='" + name + '\'' +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Column o) {
+        return 0;
     }
 }

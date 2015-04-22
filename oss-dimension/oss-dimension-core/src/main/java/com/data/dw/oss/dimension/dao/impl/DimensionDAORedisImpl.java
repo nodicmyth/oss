@@ -47,7 +47,7 @@ public class DimensionDAORedisImpl implements DimensionDAO {
                 + dimensionInfo.toValueString() + "]");
         String vals = redisClient.getValue(dimensionInfo.toKeyString());
 
-        logger.debug("[find] Find From Redis DimensionInfo = [" + dimensionInfo.toKeyString() + ", "
+        logger.debug("[find] Find After From Redis DimensionInfo = [" + dimensionInfo.toKeyString() + ", "
                 + dimensionInfo.toValueString() + "], Val = [" + vals + "]");
         Column dimKey = dimensionInfo.getDimKey();
 

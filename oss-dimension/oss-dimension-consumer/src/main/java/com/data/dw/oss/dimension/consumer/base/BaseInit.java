@@ -11,7 +11,7 @@ public class BaseInit {
     private ApplicationContext context;
     public LateArriveDimensionLookUpFacade lateArriveDimensionLookUpFacade;
     BaseInit() {
-        context = new ClassPathXmlApplicationContext("/testContext.xml");
+        context = new ClassPathXmlApplicationContext("testContext.xml");
 
         lateArriveDimensionLookUpFacade = (LateArriveDimensionLookUpFacade) context.getBean("lateArriveDimensionLookUpFacade");
     }

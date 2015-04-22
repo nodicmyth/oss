@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Created by huangshiqian on 15/4/8.
  */
-public class DimensionRequestDTO implements Serializable {
+public class DimensionRequestDTO implements Serializable, Comparable<DimensionRequestDTO> {
     /**
      * 纬度表名称
      */
@@ -65,4 +65,8 @@ public class DimensionRequestDTO implements Serializable {
         return new StringBuffer(dimKey.getName()).append(":").append(dimKey.getValue()).toString();
     }
 
+    @Override
+    public int compareTo(DimensionRequestDTO o) {
+        return 0;
+    }
 }
