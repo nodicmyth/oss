@@ -13,7 +13,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * @author shiqian.huang
- * 
+ * 前置条件需要启动oss-meta的dubbo服务
  */
 public class OSSFacadeTest extends BaseBizTest {
     @Resource
