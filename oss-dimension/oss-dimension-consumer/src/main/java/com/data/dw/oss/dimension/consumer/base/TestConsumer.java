@@ -20,8 +20,7 @@ public class TestConsumer extends BaseInit {
             t[i].start();
         }
 
-        try
-        {
+        try {
             count.await();
         }
         catch (InterruptedException e)

@@ -22,6 +22,7 @@ import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectIn
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.StringObjectInspector;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +37,7 @@ public class GenericLateArrivalDimensionLookUpUDF extends GenericUDF {
     private LateArriveDimensionLookUpFacade lateArriveDimensionLookUpFacade;
 
     /**
-     * 初始化HIVE程序
+     * 初始化HIVE程序,dubbo连接、参数拦截器等
      * @param arguments 参数的处理拦截器
      * @return 返回值处理拦截器
      * @throws UDFArgumentException
@@ -82,26 +83,29 @@ public class GenericLateArrivalDimensionLookUpUDF extends GenericUDF {
     /**
      * 执行数据
      * @param arguments 处理的数据
-     * @return
+     * @return 维度代理键MAP,key为代理键名称,value为代理键值
      * @throws HiveException
      */
     public Object evaluate(DeferredObject[] arguments) throws HiveException {
         this.ret.clear();
 
+        // 初始化dubbo调用参数对象
         DimensionRequestDTO dto = new DimensionRequestDTO();
         dto.setDimensionName(PrimitiveObjectInspectorFactory.javaStringObjectInspector.getPrimitiveJavaObject(arguments[0].get()));
         Set<Column> columns = new HashSet<Column>();
         dto.setColumns(columns);
 
+        // 初始化维度模型的业务键数据
         for(int i = 1; i < arguments.length; i += 2) {
             dto.addColumn(new Column(
                     PrimitiveObjectInspectorFactory.javaStringObjectInspector.getPrimitiveJavaObject(arguments[i].get())
                     , ((PrimitiveObjectInspector) ois[i + 1]).getPrimitiveJavaObject(arguments[i + 1].get())));
         }
 
-
+        // 通过DUBBO服务查询并生成迟到的维度的代理键
         Column keyV = lateArriveDimensionLookUpFacade.lookUp(dto);
 
+        // 将返回数据put进hive返回值
         this.ret.put(keyV.getName(), keyV.getValue());
 
         return this.ret;
@@ -130,5 +134,15 @@ public class GenericLateArrivalDimensionLookUpUDF extends GenericUDF {
 
         sb.append(")");
         return sb.toString();
+    }
+
+    @Override
+    public void close() throws IOException {
+        super.close();
+
+        this.ret.clear();
+        this.ret = null;
+        this.ois = null;
+        this.lateArriveDimensionLookUpFacade = null;
     }
 }
