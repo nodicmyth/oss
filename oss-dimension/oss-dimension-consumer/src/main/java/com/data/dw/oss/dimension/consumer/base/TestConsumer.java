@@ -1,8 +1,5 @@
 package com.data.dw.oss.dimension.consumer.base;
 
-import com.data.dw.oss.dimension.facade.LateArriveDimensionLookUpFacade;
-
-import javax.annotation.Resource;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -14,6 +11,7 @@ public class TestConsumer extends BaseInit {
         int len = 2;
         Thread[] t = new Thread[len];
         CountDownLatch count = new CountDownLatch(len);
+
         for (int i = 0; i < len; i++) {
             t[i] = new TestDimensionThread(count, lateArriveDimensionLookUpFacade);
 
